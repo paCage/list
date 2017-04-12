@@ -1,23 +1,23 @@
 /*
- * list_add_tests.c
+ * list_push_tests.c
  */
 
 
 #include <cgreen/cgreen.h>
 #include "new_list.h"
-#include "list_add.h"
+#include "list_push.h"
 
 
 #define INTKEY 1234
 #define LISTLEN 13
 
 
-Describe(list_add);
-BeforeEach(list_add) {}
-AfterEach(list_add) {}
+Describe(list_push);
+BeforeEach(list_push) {}
+AfterEach(list_push) {}
 
 
-Ensure(list_add, adds_new_node_properly)
+Ensure(list_push, pushs_new_node_properly)
 {
   list_t list;
   new_list(&list);
@@ -28,7 +28,7 @@ Ensure(list_add, adds_new_node_properly)
 
   for(i = 0; i < LISTLEN; i++){
     node[i].iKey = INTKEY * i;
-    list_add(&list, &node[i]);
+    list_push(&list, &node[i]);
     assert_that(list.len, is_equal_to(i + 1));
     assert_that(list.head->iKey, is_equal_to(INTKEY * i));
   }

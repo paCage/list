@@ -5,11 +5,11 @@
 
 #include <cgreen/cgreen.h>
 #include "new_list.h"
-#include "list_add.h"
+#include "list_push.h"
 #include "list_traverse.h"
 
 
-static void add(listnode_t*, void*);
+static void sum(listnode_t*, void*);
 static void check_new_key(listnode_t*, void*);
 
 
@@ -34,10 +34,10 @@ Ensure(list_traverse, passes_all_node)
 
   for(i = 0; i < LISTLEN; i++){
     nodes[i].iKey = INTKEY;
-    list_add(&list, &nodes[i]);
+    list_push(&list, &nodes[i]);
   }
 
-  list_traverse(&list, add, &total);
+  list_traverse(&list, sum, &total);
 
   assert_that(total, is_equal_to(LISTLEN * INTKEY));
 
@@ -45,7 +45,7 @@ Ensure(list_traverse, passes_all_node)
 }
 
 
-static void add(listnode_t* node, void* data)
+static void sum(listnode_t* node, void* data)
 {
   *(int*)data += node->iKey;
   node->iKey = NEWKEY;

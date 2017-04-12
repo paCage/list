@@ -5,7 +5,7 @@
 
 #include <cgreen/cgreen.h>
 #include "new_list.h"
-#include "list_add.h"
+#include "list_push.h"
 #include "list_pop.h"
 
 
@@ -29,7 +29,7 @@ Ensure(list_pop, pops_new_node_properly)
 
   for(i = 0; i < LISTLEN; i++){
     node[i].iKey = INTKEY * i;
-    list_add(&list, &node[i]);
+    list_push(&list, &node[i]);
     assert_that(list.len, is_equal_to(i + 1));
     assert_that(list.head->iKey, is_equal_to(INTKEY * i));
   }
